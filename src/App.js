@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import {BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
+import LoginAuth from './components/Auth/LoginAuth';
+import RegisterAuth from './components/Auth/RegisterAuth';
+import Home from './components/Home';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const currentUser=useSelector(state=>state.auth.currentUser);
+  const token=sessionStorage.getItem("token");
+  const user=sessionStorage.getItem("user");
+  const token1 = document.cookie.zaperon;
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <BrowserRouter>
+   <Routes>
+   {token && user && 
+    <Route path="/" element={<Home />} />}
+
+      <Route path="/login" element={<LoginAuth/>} />
+      <Route path="/register" element={<RegisterAuth />} />
+  
+ 
+   </Routes>
+   </BrowserRouter>
   );
 }
 
