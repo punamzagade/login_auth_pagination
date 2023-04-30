@@ -7,17 +7,17 @@ import { logout } from '../store/AuthReducer'
 import Cards from './Cards'
 import { mobile } from '../responsive'
 
-const Home = () => {
+const Home = ({setLog}) => {
   const dispatch=useDispatch();
   const navigate=useNavigate();
   const token=sessionStorage.getItem("token");
   const user=sessionStorage.getItem("user");
-
+ 
 
   const handleLogout=()=>{
     sessionStorage.clear();
     dispatch(logout());
-    navigate("/login");
+    setLog(true);
   }
   
   return (
