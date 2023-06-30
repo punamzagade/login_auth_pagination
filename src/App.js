@@ -17,9 +17,9 @@ function App() {
    <BrowserRouter>
    <Routes>
   
-    <Route path="/" element={token && user ? <Home setLog={setLog}/> : <LoginAuth/>} />
+    <Route path="/" element={token && user ? <Home setLog={setLog}/> :<Navigate to="/login"/>} />
 
- {log && <Route path="/login" element={<LoginAuth/>} />}
+  <Route path="/login" element={<LoginAuth/>} />
       <Route path="/register" element={<RegisterAuth />} />
   
  
